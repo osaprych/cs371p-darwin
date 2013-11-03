@@ -24,7 +24,7 @@ class Creature {
 
 		void go(int);
 		void increment_pc();
-		void infect(Species*);
+		void infect(Creature&);
 		void turn_left();
 		void turn_right();
 
@@ -77,15 +77,16 @@ class World {
 class Species {
 	private:
 		std::vector<Instruction*> instructions;
-		bool completed;
 		const std::string name;
+		bool completed;
 
 	public:
-		Species(std::string n) : name(n) {}
+		Species(std::string n) : 
+			name(n), completed(false) {}
 
 		void add_instruction(Instruction*);
 		void complete();
-		Instruction& next_move();
+		Instruction& next_move(int pc);
 
 		void print_short_name(std::ostream&);
 };
