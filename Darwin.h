@@ -43,25 +43,35 @@ class Location {
 		const int y;
 
 	public:
-		Location(int row, int column) : x(column), y(row) {}
+		Location(int column, int row) : x(column), y(row) {}
 
-		bool operator <(Location& other) const {
+		bool operator <(const Location& other) const {
 			if (y == other.y)
 				return x < other.x;
 			else
 				return y < other.y;
 		}
+
+		bool within_bounds(int w, int h){
+			return x >= 0 && x <= w && y >= 0 && y <= h;
+		}
+
+		Location operator +(direction d) const;
 };
 
-// template <int height, int width>
 class World {
 	private:
 		std::vector<Creature> zoo;
-		// int grid[height][width];
 		std::map<Location, int> grid;
+		int width;
+		int height;
 		int turn;
 
+		bool free_space(Location);
+
 	public:
+		World(int w, int h) : width(w), height(h), turn(0) {}
+
 		void add_creature(Species*, direction, Location);
 		void step();
 		void print(std::ostream&);

@@ -75,3 +75,49 @@ Instruction& Creature::next_move(){
 void Creature::print(std::ostream& o){
 	behavior->print_short_name(o);
 }
+
+void World::add_creature(Species* s, direction d, Location l){
+	using namespace std;
+	assert(l.within_bounds(width, height));
+	Creature c(s, d);
+	grid.at(l) = zoo.size();
+	zoo.push_back(c);
+}
+
+Location Location::operator +(direction d) const {
+	int x = this->x;
+	int y = this->y;
+	switch (d) {
+		case west:
+			x--;
+			break;
+		case south:
+			y++;
+			break;
+		case east:
+			x++;
+			break;
+		case north:
+			y--;
+			break;
+	}
+	return Location(x, y);
+}
+
+bool World::free_space(Location i){
+	return i.within_bounds(width, height) &&
+	  grid.find(i) == grid.end();
+}
+
+void World::move(const Location l, const direction d){
+	using namespace std;
+	map<Location, int>::iterator it = grid.find(l);
+	assert(it != grid.end());
+	const int index = it->second;
+	Location intended = l + d;
+
+	if (free_space(intended)){
+		grid.erase(it);
+		grid.at(intended) = index;
+	}
+}
