@@ -46,10 +46,10 @@ class Location {
 		Location(int row, int column) : x(row), y(column) {}
 
 		bool operator <(Location& other) const {
-			if (x == other.x)
-				return y < other.y;
-			else
+			if (y == other.y)
 				return x < other.x;
+			else
+				return y < other.y;
 		}
 };
 
