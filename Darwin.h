@@ -43,7 +43,7 @@ class Location {
 		const int y;
 
 	public:
-		Location(int row, int column) : x(row), y(column) {}
+		Location(int row, int column) : x(column), y(row) {}
 
 		bool operator <(Location& other) const {
 			if (y == other.y)
