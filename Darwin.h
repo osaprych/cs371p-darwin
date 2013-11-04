@@ -74,7 +74,7 @@ class World {
 		bool free_space(Location) const;
 
 	public:
-		World(int w, int h) : width(w), height(h), turn(0) {}
+		World(int h, int w) : width(w), height(h), turn(0) {}
 
 		void add_creature(Species*, direction, Location);
 		void step();
