@@ -67,8 +67,8 @@ class World {
 	private:
 		std::vector<Creature> zoo;
 		std::map<Location, int> grid;
-		int width;
-		int height;
+		const int width;
+		const int height;
 		int turn;
 
 		bool free_space(Location) const;
