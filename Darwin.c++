@@ -172,7 +172,7 @@ void World::move(const Location l, const direction d){
 	if (free_space(intended)){
         assert(if_enemy(l, d));
 		grid.erase(it);
-		grid.at(intended) = index;
+        grid.insert(pair<Location, int>(intended, index));
 	}
 }
 
@@ -189,7 +189,7 @@ void World::add_creature(Species* s, direction d, Location l){
 	using namespace std;
 	assert(l.within_bounds(width, height));
 	Creature c(s, d);
-	grid.at(l) = zoo.size();
+    grid.insert(pair<Location, int>(l, zoo.size()));
 	zoo.push_back(c);
 }
 
