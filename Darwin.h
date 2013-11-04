@@ -11,6 +11,10 @@ class Instruction;
 
 class Species;
 
+class World;
+
+class Location;
+
 class Creature {
 	private:
 		Species* behavior;
@@ -18,17 +22,17 @@ class Creature {
 		direction facing;
 		int turns;
 
+		void go(int);
+		void increment_pc();
+		void turn_left();
+		void turn_right();
 	public:
 		Creature (Species* s, direction d) : 
 			behavior(s), pc(0), facing(d), turns(0) {}
 
-		void go(int);
-		void increment_pc();
 		void infect(Creature&);
-		void turn_left();
-		void turn_right();
 
-		Instruction& next_move();
+		void take_turn(World&, Location);
 
 		void print(std::ostream&) const;
 
@@ -86,7 +90,7 @@ class World {
 
 class Species {
 	private:
-		std::vector<Instruction*> instructions;
+		std::vector<Instruction> instructions;
 		const std::string name;
 		bool completed;
 
@@ -94,22 +98,19 @@ class Species {
 		Species(std::string n) : 
 			name(n), completed(false) {}
 
-		void add_instruction(Instruction*);
+		void add_instruction(Instruction);
 		void complete();
-		Instruction& next_move(int pc);
+		Instruction next_move(int pc) const;
 
 		void print_short_name(std::ostream&);
 };
 
-class Instruction {
-	protected:
-		Instruction() {}
-	public:
-		virtual void perform(World*, Creature&, Location) = 0;
+enum creature_behavior {hop, left, right, infect,
+                        if_empty, if_wall, if_random, if_enemy, go};
+
+struct Instruction {
+    creature_behavior h;
+    int n;
 };
-
-class Command : public Instruction {};
-
-class Action : public Instruction {};
 
 #endif

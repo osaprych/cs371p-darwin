@@ -3,13 +3,14 @@
 
 /* Species */
 
-void Species::add_instruction(Instruction* k){
+void Species::add_instruction(Instruction k){
 	assert(!completed);
 	instructions.push_back(k);
 }
 
-Instruction& Species::next_move(const int pc){
-	return *instructions.at(pc);
+Instruction Species::next_move(const int pc) const {
+    assert(completed);
+	return instructions.at(pc);
 }
 
 void Species::complete(){
@@ -74,13 +75,65 @@ void Creature::turn_right(){
 	}
 }
 
-Instruction& Creature::next_move(){
-	return behavior->next_move(pc);
-}
-
-
 void Creature::print(std::ostream& o) const {
 	behavior->print_short_name(o);
+}
+
+void Creature::take_turn(World& w, Location l){
+    bool action = false;
+    while (!action){
+        Instruction i = behavior->next_move(pc);
+        switch (i.h){
+            case hop:
+                w.move(l, facing);
+                action = true;
+                pc++;
+                break;
+            case left:
+                turn_left();
+                action = true;
+                pc++;
+                break;
+            case right:
+                turn_right();
+                action = true;
+                pc++;
+                break;
+            case creature_behavior::infect:
+                w.infect(l, facing);
+                action = true;
+                pc++;
+                break;
+            case if_empty:
+                if (w.if_empty(l, facing))
+                    pc = i.n;
+                else
+                    pc++;
+                break;
+            case if_wall:
+                if (w.if_wall(l, facing))
+                    pc = i.n;
+                else
+                    pc++;
+                break;
+            case if_enemy:
+                if (w.if_enemy(l, facing))
+                    pc = i.n;
+                else
+                    pc++;
+                break;
+            case creature_behavior::go:
+                pc = i.n;
+                break;
+            case if_random:
+                if (rand() % 2) //odd number
+                    pc = i.n;
+                else
+                    pc++;
+                break;
+        }
+    }
+    turns++;
 }
 
 /* end Creature */
