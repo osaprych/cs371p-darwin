@@ -1,6 +1,8 @@
 #include "Darwin.h"
 #include <cassert>
 
+/* Species */
+
 void Species::add_instruction(Instruction* k){
 	assert(!completed);
 	instructions.push_back(k);
@@ -20,6 +22,10 @@ void Species::print_short_name(std::ostream& o){
 	assert(name.length() > 0);
 	o << name[0];
 }
+
+/* end Species */
+
+/* Creature */
 
 void Creature::go(int n){
 	pc = n;
@@ -72,17 +78,12 @@ Instruction& Creature::next_move(){
 	return behavior->next_move(pc);
 }
 
-void Creature::print(std::ostream& o){
+
+void Creature::print(std::ostream& o) const {
 	behavior->print_short_name(o);
 }
 
-void World::add_creature(Species* s, direction d, Location l){
-	using namespace std;
-	assert(l.within_bounds(width, height));
-	Creature c(s, d);
-	grid.at(l) = zoo.size();
-	zoo.push_back(c);
-}
+/* end Creature */
 
 Location Location::operator +(direction d) const {
 	int x = this->x;
@@ -104,7 +105,9 @@ Location Location::operator +(direction d) const {
 	return Location(x, y);
 }
 
-bool World::free_space(Location i){
+/* World */
+
+bool World::free_space(Location i) const{
 	return i.within_bounds(width, height) &&
 	  grid.find(i) == grid.end();
 }
@@ -117,7 +120,75 @@ void World::move(const Location l, const direction d){
 	Location intended = l + d;
 
 	if (free_space(intended)){
+        assert(if_enemy(l, d));
 		grid.erase(it);
 		grid.at(intended) = index;
 	}
 }
+
+void World::infect(const Location l, const direction d){
+	using namespace std;
+    if (if_enemy(l, d)){
+        Creature& caller = zoo[grid.find(l)->second];
+        Creature& target = zoo[grid.find(l + d)->second];
+        caller.infect(target);
+    }
+}
+
+void World::add_creature(Species* s, direction d, Location l){
+	using namespace std;
+	assert(l.within_bounds(width, height));
+	Creature c(s, d);
+	grid.at(l) = zoo.size();
+	zoo.push_back(c);
+}
+
+const char empty_space = '.';
+
+void World::print(std::ostream& o) const {
+    using namespace std;
+    o << "Turn = " << turn << "." << endl;
+    // column heading
+    o << "  ";
+    for (int c = 0; c < width; c++){
+        o << c % 10;
+    }
+    o << endl;
+    // rows
+    for (int r = 0; r < height; r++){
+        o << r << " "; //row heading
+        for (int c = 0; c < width; c++){
+            Location current(c, r);
+            map<Location, int>::const_iterator it = grid.find(current);
+            if (it == grid.end()){
+                o << empty_space;
+            } else {
+                zoo[it->second].print(o);
+            }
+        }
+        o << endl;
+    }
+    o << endl;
+}
+
+bool World::if_empty(Location l, direction d) const {
+    return free_space(l + d);
+}
+
+bool World::if_wall(Location l, direction d) const {
+    Location query = l + d;
+    return !query.within_bounds(width, height);
+}
+
+bool World::if_enemy(Location l, direction d) const {
+    using namespace std;
+    Location other = l + d;
+    const Creature& caller = zoo[grid.at(l)];
+    map<Location, int>::const_iterator it = grid.find(other);
+    if (it == grid.end())
+        return false;
+    else
+        return caller == zoo[it->second];
+}
+
+/* end World */

@@ -30,7 +30,7 @@ class Creature {
 
 		Instruction& next_move();
 
-		void print(std::ostream&);
+		void print(std::ostream&) const;
 
 		bool operator ==(const Creature& o) const {
 			return o.behavior == behavior;
@@ -67,21 +67,21 @@ class World {
 		int height;
 		int turn;
 
-		bool free_space(Location);
+		bool free_space(Location) const;
 
 	public:
 		World(int w, int h) : width(w), height(h), turn(0) {}
 
 		void add_creature(Species*, direction, Location);
 		void step();
-		void print(std::ostream&);
+		void print(std::ostream&) const;
 
 		void move(Location, direction);
 		void infect(Location, direction);
 
-		bool if_empty(Location, direction);
-		bool if_wall(Location, direction);
-		bool if_enemy(Location, direction);
+		bool if_empty(Location, direction) const;
+		bool if_wall(Location, direction) const;
+		bool if_enemy(Location, direction) const;
 };
 
 class Species {
