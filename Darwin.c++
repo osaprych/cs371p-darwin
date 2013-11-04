@@ -14,6 +14,7 @@ Instruction Species::next_move(const int pc) const {
 }
 
 void Species::complete(){
+    assert(!completed);
 	completed = true;
 	instructions.shrink_to_fit();
 }
