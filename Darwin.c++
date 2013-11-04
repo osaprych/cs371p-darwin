@@ -240,4 +240,21 @@ bool World::if_enemy(Location l, direction d) const {
         return caller == zoo[it->second];
 }
 
+void World::step(){
+    using namespace std;
+    turn++;
+    for (int r = 0; r < height; r++){
+        for (int c = 0; c < width; c++){
+            Location here(c, r);
+            map<Location, int>::iterator it = grid.find(here);
+            if (it != grid.end()){
+                Creature& current = zoo[it->second];
+                if (!current.has_taken_turns(turn))
+                    current.take_turn(*this, here);
+                assert(current.has_taken_turns(turn));
+            }
+        }
+    }
+}
+
 /* end World */
