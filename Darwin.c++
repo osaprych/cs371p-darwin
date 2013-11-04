@@ -152,7 +152,7 @@ Location Location::operator +(direction d) const {
 			y--;
 			break;
 	}
-	return Location(x, y);
+	return Location(y, x);
 }
 
 /* World */
@@ -170,7 +170,7 @@ void World::move(const Location l, const direction d){
 	Location intended = l + d;
 
 	if (free_space(intended)){
-        assert(if_enemy(l, d));
+        assert(if_empty(l, d));
 		grid.erase(it);
         grid.insert(pair<Location, int>(intended, index));
 	}
@@ -208,7 +208,7 @@ void World::print(std::ostream& o) const {
     for (int r = 0; r < height; r++){
         o << r << " "; //row heading
         for (int c = 0; c < width; c++){
-            Location current(c, r);
+            Location current(r, c);
             map<Location, int>::const_iterator it = grid.find(current);
             if (it == grid.end()){
                 o << empty_space;
