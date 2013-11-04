@@ -57,7 +57,7 @@ class Location {
 		}
 
 		bool within_bounds(int w, int h){
-			return x >= 0 && x <= w && y >= 0 && y <= h;
+			return x >= 0 && x < w && y >= 0 && y < h;
 		}
 
 		Location operator +(direction d) const;
