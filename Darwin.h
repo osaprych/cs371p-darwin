@@ -22,8 +22,6 @@ class Creature {
 		direction facing;
 		int turns;
 
-		void go(int);
-		void increment_pc();
 		void turn_left();
 		void turn_right();
 	public:

@@ -28,14 +28,6 @@ void Species::print_short_name(std::ostream& o){
 
 /* Creature */
 
-void Creature::go(int n){
-	pc = n;
-}
-
-void Creature::increment_pc(){
-	++pc;
-}
-
 void Creature::infect(Creature& target){
 	target.pc = 0;
 	target.behavior = behavior;
