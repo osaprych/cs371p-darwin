@@ -128,6 +128,10 @@ void Creature::take_turn(World& w, Location l){
     turns++;
 }
 
+bool Creature::has_taken_turns(int n) const {
+    return turns >= n;
+}
+
 /* end Creature */
 
 Location Location::operator +(direction d) const {

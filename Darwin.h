@@ -37,6 +37,8 @@ class Creature {
 		bool operator ==(const Creature& o) const {
 			return o.behavior == behavior;
 		}
+
+        bool has_taken_turns(int) const;
 };
 
 class Location {
