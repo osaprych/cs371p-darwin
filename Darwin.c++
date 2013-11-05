@@ -203,15 +203,14 @@ void World::add_creature(Species* s, direction d, Location l){
     if (s == 0){
         throw invalid_argument("Null Species provided");
     }
-    if (grid.count(l) > 0){
-        throw invalid_argument("Existing Creature at Location");
-    }
     if (!s->ready()){
         throw invalid_argument("Species behavior not completed.");
     }
-	Creature c(s, d);
-    grid.insert(pair<Location, int>(l, zoo.size()));
-	zoo.push_back(c);
+    if (grid.count(l) == 0){
+        Creature c(s, d);
+        grid.insert(pair<Location, int>(l, zoo.size()));
+        zoo.push_back(c);
+    }
 }
 
 const char empty_space = '.';
