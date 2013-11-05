@@ -227,7 +227,7 @@ void World::print(std::ostream& o) const {
     o << endl;
     // rows
     for (int r = 0; r < height; r++){
-        o << r << " "; //row heading
+        o << r % 10 << " "; //row heading
         for (int c = 0; c < width; c++){
             Location current(r, c);
             map<Location, int>::const_iterator it = grid.find(current);
