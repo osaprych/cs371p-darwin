@@ -13,6 +13,13 @@
 // main
 // ----
 
+void add_somewhere(World& w, Species* s, int rows, int columns){
+    const int position = rand() % (rows * columns);
+    Location l(position / columns, position % columns);
+    direction d = static_cast<direction>(rand() % 4);
+    w.add_creature(s, d, l);
+}
+
 int main (){
 
     // ----
@@ -85,7 +92,6 @@ int main (){
         for (int i = 0; i <= 5; i++){
             w.print(cout);
             w.step();
-            //cout << endl;
         }
     } catch (const invalid_argument&) {
         assert(false);
@@ -110,7 +116,6 @@ int main (){
         for (int i = 0; i <= 5; i++){
             w.print(cout);
             w.step();
-            //cout << endl;
         }
     } catch (const invalid_argument&) {
         assert(false);
@@ -126,21 +131,22 @@ int main (){
     try {
         cout << "*** Darwin 72x72 without Best ***" << endl;
         srand(0);
-        /*
-        Randomly place the following creatures facing randomly.
-        Call rand(), mod it with 5184 (72x72), and use that for the position
-        in a row-major order grid.
-        Call rand() again, mod it with 4 and use that for it's direction with
-        the ordering: west, north, east, south.
-        Do that for each kind of creature.
-        10 Food
-        10 Hopper
-        10 Rover
-        10 Trap
-        Simulate 1000 moves.
-        Print the first 10 grids          (i.e. 0, 1, 2...9).
-        Print every 100th grid after that (i.e. 100, 200, 300...1000).
-        */
+        World w(72, 72);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &food,   72, 72);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &hopper, 72, 72);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &rover,  72, 72);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &trap,   72, 72);
+
+        for (int s = 0; s <= 9; s++){
+            w.print(cout);
+            w.step();
+        }
+        for (int s = 10; s <= 1000; s++){
+            if (s % 100 == 0){
+                w.print(cout);
+            }
+            w.step();
+        }
     } catch (const invalid_argument&) {
         assert(false);
     } catch (const out_of_range&) {
