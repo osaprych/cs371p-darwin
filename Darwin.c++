@@ -246,7 +246,7 @@ void World::step(){
     turn++;
     for (int r = 0; r < height; r++){
         for (int c = 0; c < width; c++){
-            Location here(c, r);
+            Location here(r, c);
             map<Location, int>::iterator it = grid.find(here);
             if (it != grid.end()){
                 Creature& current = zoo[it->second];
