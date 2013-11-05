@@ -1,5 +1,6 @@
 #include "Darwin.h"
 #include <cassert>
+#include <stdexcept>
 
 /* Species */
 
@@ -187,7 +188,15 @@ void World::infect(const Location l, const direction d){
 
 void World::add_creature(Species* s, direction d, Location l){
 	using namespace std;
-	assert(l.within_bounds(width, height));
+	if (!l.within_bounds(width, height)){
+        throw out_of_range("Location is out of bounds"); 
+    }
+    if (s == 0){
+        throw invalid_argument("Null Species provided");
+    }
+    if (grid.count(l) > 0){
+        throw invalid_argument("Existing Creature at Location");
+    }
 	Creature c(s, d);
     grid.insert(pair<Location, int>(l, zoo.size()));
 	zoo.push_back(c);
