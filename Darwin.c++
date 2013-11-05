@@ -255,17 +255,12 @@ bool World::if_enemy(Location l, direction d) const {
 void World::step(){
     using namespace std;
     turn++;
-    for (int r = 0; r < height; r++){
-        for (int c = 0; c < width; c++){
-            Location here(r, c);
-            map<Location, int>::iterator it = grid.find(here);
-            if (it != grid.end()){
-                Creature& current = zoo[it->second];
-                if (!current.has_taken_turns(turn))
-                    current.take_turn(*this, here);
-                assert(current.has_taken_turns(turn));
-            }
-        }
+    map<Location, int>::iterator it;
+    for (it = grid.begin(); it != grid.end(); it++){
+        Creature& current = zoo[it->second];
+        if (!current.has_taken_turns(turn))
+            current.take_turn(*this, it->first);
+        assert(current.has_taken_turns(turn));
     }
 }
 
