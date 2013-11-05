@@ -172,6 +172,8 @@ void World::move(const Location l, const direction d){
 
 	if (free_space(intended)){
         assert(if_empty(l, d));
+        assert(!if_enemy(l, d));
+        assert(!if_wall(l, d));
 		grid.erase(it);
         grid.insert(pair<Location, int>(intended, index));
 	}
