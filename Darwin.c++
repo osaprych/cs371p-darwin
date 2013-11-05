@@ -238,7 +238,7 @@ bool World::if_enemy(Location l, direction d) const {
     if (it == grid.end())
         return false;
     else
-        return caller == zoo[it->second];
+        return !(caller == zoo[it->second]);
 }
 
 void World::step(){
