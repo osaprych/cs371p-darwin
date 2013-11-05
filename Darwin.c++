@@ -16,6 +16,9 @@ Instruction Species::next_move(const int pc) const {
 
 void Species::complete(){
     assert(!completed);
+    if (instructions.size() == 0){
+        throw std::invalid_argument("A Species requires instructions.");
+    }
 	completed = true;
 	instructions.shrink_to_fit();
 }
@@ -24,6 +27,10 @@ void Species::print_short_name(std::ostream& o){
 	using namespace std;
 	assert(name.length() > 0);
 	o << name[0];
+}
+
+bool Species::ready() const {
+    return completed;
 }
 
 /* end Species */
@@ -198,6 +205,9 @@ void World::add_creature(Species* s, direction d, Location l){
     }
     if (grid.count(l) > 0){
         throw invalid_argument("Existing Creature at Location");
+    }
+    if (!s->ready()){
+        throw invalid_argument("Species behavior not completed.");
     }
 	Creature c(s, d);
     grid.insert(pair<Location, int>(l, zoo.size()));
