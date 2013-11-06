@@ -5,13 +5,13 @@
 /* Species */
 
 void Species::add_instruction(Instruction k){
-	assert(!completed);
-	instructions.push_back(k);
+    assert(!completed);
+    instructions.push_back(k);
 }
 
 Instruction Species::next_move(const int pc) const {
     assert(completed);
-	return instructions.at(pc);
+    return instructions.at(pc);
 }
 
 void Species::complete(){
@@ -19,14 +19,14 @@ void Species::complete(){
     if (instructions.size() == 0){
         throw std::invalid_argument("A Species requires instructions.");
     }
-	completed = true;
-	instructions.shrink_to_fit();
+    completed = true;
+    instructions.shrink_to_fit();
 }
 
 void Species::print_short_name(std::ostream& o){
-	using namespace std;
-	assert(name.length() > 0);
-	o << name[0];
+    using namespace std;
+    assert(name.length() > 0);
+    o << name[0];
 }
 
 bool Species::ready() const {
@@ -38,46 +38,46 @@ bool Species::ready() const {
 /* Creature */
 
 void Creature::infect(Creature& target){
-	target.pc = 0;
-	target.behavior = behavior;
+    target.pc = 0;
+    target.behavior = behavior;
 }
 
 void Creature::turn_left(){
-	switch (facing) {
-		case west:
-			facing = south;
-			break;
-		case south:
-			facing = east;
-			break;
-		case east:
-			facing = north;
-			break;
-		case north:
-			facing = west;
-			break;
-	}
+    switch (facing) {
+        case west:
+            facing = south;
+            break;
+        case south:
+            facing = east;
+            break;
+        case east:
+            facing = north;
+            break;
+        case north:
+            facing = west;
+            break;
+    }
 }
 
 void Creature::turn_right(){
-	switch (facing) {
-		case west:
-			facing = north;
-			break;
-		case south:
-			facing = west;
-			break;
-		case east:
-			facing = south;
-			break;
-		case north:
-			facing = east;
-			break;
-	}
+    switch (facing) {
+        case west:
+            facing = north;
+            break;
+        case south:
+            facing = west;
+            break;
+        case east:
+            facing = south;
+            break;
+        case north:
+            facing = east;
+            break;
+    }
 }
 
 void Creature::print(std::ostream& o) const {
-	behavior->print_short_name(o);
+    behavior->print_short_name(o);
 }
 
 void Creature::take_turn(World& w, Location l){
@@ -144,50 +144,50 @@ bool Creature::has_taken_turns(int n) const {
 /* end Creature */
 
 Location Location::operator +(direction d) const {
-	int x = this->x;
-	int y = this->y;
-	switch (d) {
-		case west:
-			x--;
-			break;
-		case south:
-			y++;
-			break;
-		case east:
-			x++;
-			break;
-		case north:
-			y--;
-			break;
-	}
-	return Location(y, x);
+    int x = this->x;
+    int y = this->y;
+    switch (d) {
+        case west:
+            x--;
+            break;
+        case south:
+            y++;
+            break;
+        case east:
+            x++;
+            break;
+        case north:
+            y--;
+            break;
+    }
+    return Location(y, x);
 }
 
 /* World */
 
 bool World::free_space(Location i) const{
-	return i.within_bounds(width, height) &&
-	  grid.find(i) == grid.end();
+    return i.within_bounds(width, height) &&
+      grid.find(i) == grid.end();
 }
 
 void World::move(const Location l, const direction d){
-	using namespace std;
-	map<Location, int>::iterator it = grid.find(l);
-	assert(it != grid.end());
-	const int index = it->second;
-	Location intended = l + d;
+    using namespace std;
+    map<Location, int>::iterator it = grid.find(l);
+    assert(it != grid.end());
+    const int index = it->second;
+    Location intended = l + d;
 
-	if (free_space(intended)){
+    if (free_space(intended)){
         assert(if_empty(l, d));
         assert(!if_enemy(l, d));
         assert(!if_wall(l, d));
-		grid.erase(it);
+        grid.erase(it);
         grid.insert(pair<Location, int>(intended, index));
-	}
+    }
 }
 
 void World::infect(const Location l, const direction d){
-	using namespace std;
+    using namespace std;
     if (if_enemy(l, d)){
         Creature& caller = zoo[grid.find(l)->second];
         Creature& target = zoo[grid.find(l + d)->second];
@@ -196,8 +196,8 @@ void World::infect(const Location l, const direction d){
 }
 
 void World::add_creature(Species* s, direction d, Location l){
-	using namespace std;
-	if (!l.within_bounds(width, height)){
+    using namespace std;
+    if (!l.within_bounds(width, height)){
         throw out_of_range("Location is out of bounds"); 
     }
     if (s == 0){
