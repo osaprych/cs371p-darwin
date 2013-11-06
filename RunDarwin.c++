@@ -70,6 +70,21 @@ int main (){
     trap.add_instruction({go, 0});       // 4: go 0
     trap.complete();
 
+    // ----
+    // best
+    // ----
+
+    Species best("best");
+    best.add_instruction({if_empty, 6});    // 0: if_empty 9
+    best.add_instruction({if_enemy, 4});    // 1: if_enemy 2
+    best.add_instruction({left});           // 2: left
+    best.add_instruction({go, 0});          // 3: go 0
+    best.add_instruction({infect});         // 4: infect
+    best.add_instruction({go, 0});          // 5: go 0
+    best.add_instruction({hop});            // 6: hop
+    best.add_instruction({go, 0});          // 7: go 0
+    best.complete();
+
     using namespace std;
     //std::left conflicts with creature instruction left, so
     //do this after defining species
@@ -153,6 +168,7 @@ int main (){
         assert(false);
     }
 
+
     // ------------
     // darwin 72x72
     // with best
@@ -161,23 +177,23 @@ int main (){
     try {
         cout << "*** Darwin 72x72 with Best ***" << endl;
         srand(0);
-        /*
-        Randomly place the following creatures facing randomly.
-        Call rand(), mod it with 5184 (72x72), and use that for the position
-        in a row-major order grid.
-        Call rand() again, mod it with 4 and use that for it's direction with
-        the ordering: 0:west, 1:north, 2:east, 3:south.
-        Do that for each kind of creature.
-        10 Food
-        10 Hopper
-        10 Rover
-        10 Trap
-        10 Best
-        Simulate 1000 moves.
-        Best MUST outnumber ALL other species for the bonus pts.
-        Print the first 10 grids          (i.e. 0, 1, 2...9).
-        Print every 100th grid after that (i.e. 100, 200, 300...1000).
-        */
+        World w(72, 72);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &food, 72, 72);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &hopper, 72, 72);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &rover, 72, 72);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &trap, 72, 72);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &best, 72, 72);
+
+        for (int s = 0; s <= 9; s++){
+            w.print(cout);
+            w.step();
+        }
+        for (int s = 10; s <= 1000; s++){
+            if (s % 100 == 0){
+                w.print(cout);
+            }
+            w.step();
+        }
     } catch (const invalid_argument&) {
         assert(false);
     } catch (const out_of_range&) {
