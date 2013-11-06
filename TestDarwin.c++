@@ -39,6 +39,16 @@ TEST(Creature_tests, infect_direction){
 	ASSERT_EQ(east, b.facing);
 }
 
+TEST(Creature_tests, infect_post){
+	Species food("a");
+	Species rover("b");
+	Creature a(&food, north);
+	Creature b(&rover, east);
+
+	a.infect(b);
+	ASSERT_EQ(a, b);
+}
+
 TEST(Creature_tests, turn_move){
 	World w(2, 2);
 	Species s("s");
@@ -79,6 +89,21 @@ TEST(Creature_tests, turn_condition){
 	ASSERT_EQ(north, a.facing);
 }
 
+TEST(Creature_tests, turn_random){
+	World w(2, 2);
+	Species s("s");
+	s.add_instruction({if_random, 2});
+	s.add_instruction({left});
+	s.add_instruction({right});
+	s.complete();
+	Location l(0, 0);
+	w.add_creature(&s, east, l);
+	Creature& a = w.zoo[0];
+	srand(0);
+	a.take_turn(w, l);
+	ASSERT_EQ(south, a.facing);
+}
+
 TEST(Creature_tests, turn_count){
 	World w(2, 2);
 	Species s("s");
@@ -91,6 +116,42 @@ TEST(Creature_tests, turn_count){
 
 	a.take_turn(w, l);
 	ASSERT_EQ(1, a.turns);
+}
+
+TEST(Creature_tests, turn_complex){
+	World w(2, 2);
+	Species s("s");
+	s.add_instruction({go, 1});
+	s.add_instruction({if_wall, 3});
+	s.add_instruction({hop});
+	s.add_instruction({left});
+	s.add_instruction({go, 0});
+	s.complete();
+	Location l(0, 0);
+	w.add_creature(&s, east, l);
+	Creature& a = w.zoo[0];
+
+	w.step();
+	w.step();
+	ASSERT_EQ(4, a.pc);
+}
+
+TEST(Creature_tests, turn_complex2){
+	World w(2, 2);
+	Species s("s");
+	s.add_instruction({if_empty, 3});
+	s.add_instruction({left});
+	s.add_instruction({go, 0});	
+	s.add_instruction({hop});
+	s.add_instruction({go, 0});
+	s.complete();
+	Location l(0, 0);
+	w.add_creature(&s, east, l);
+	Creature& a = w.zoo[0];
+
+	w.step();
+	w.step();
+	ASSERT_EQ(north, a.facing);
 }
 
 TEST(Creature_tests, printing){
@@ -142,6 +203,70 @@ TEST(Creature_tests, taken_two_turns){
 	ASSERT_TRUE(a.has_taken_turns(1));
 }
 
+TEST(Creature_tests, facing_left_n){
+	Species food("a");
+	Creature a(&food, north);
+	a.turn_left();
+
+	ASSERT_EQ(west, a.facing);
+}
+
+TEST(Creature_tests, facing_left_e){
+	Species food("a");
+	Creature a(&food, east);
+	a.turn_left();
+
+	ASSERT_EQ(north, a.facing);
+}
+
+TEST(Creature_tests, facing_left_s){
+	Species food("a");
+	Creature a(&food, south);
+	a.turn_left();
+
+	ASSERT_EQ(east, a.facing);
+}
+
+TEST(Creature_tests, facing_left_w){
+	Species food("a");
+	Creature a(&food, west);
+	a.turn_left();
+
+	ASSERT_EQ(south, a.facing);
+}
+
+TEST(Creature_tests, facing_right_n){
+	Species food("a");
+	Creature a(&food, north);
+	a.turn_right();
+
+	ASSERT_EQ(east, a.facing);
+}
+
+TEST(Creature_tests, facing_right_e){
+	Species food("a");
+	Creature a(&food, east);
+	a.turn_right();
+
+	ASSERT_EQ(south, a.facing);
+}
+
+TEST(Creature_tests, facing_right_s){
+	Species food("a");
+	Creature a(&food, south);
+	a.turn_right();
+
+	ASSERT_EQ(west, a.facing);
+}
+
+TEST(Creature_tests, facing_right_w){
+	Species food("a");
+	Creature a(&food, west);
+	a.turn_right();
+
+	ASSERT_EQ(north, a.facing);
+}
+
 TEST(Location_tests, order_before){
 	Location a(0, 0);
 	Location b(4, 5);
@@ -190,6 +315,18 @@ TEST(Location_tests, bounds_over){
 
 TEST(Location_tests, bounds_pass){
 	Location a(5, 2);
+
+	ASSERT_TRUE(a.within_bounds(10, 10));
+}
+
+TEST(Location_tests, bounds_edge){
+	Location a(5, 0);
+
+	ASSERT_TRUE(a.within_bounds(10, 10));
+}
+
+TEST(Location_tests, bounds_corner){
+	Location a(9, 9);
 
 	ASSERT_TRUE(a.within_bounds(10, 10));
 }
@@ -533,6 +670,14 @@ TEST(Species_tests, completion_check){
 	ASSERT_FALSE(s.ready());
 	s.complete();
 	ASSERT_TRUE(s.ready());
+}
+
+TEST(Species_tests, completion_fails){
+	Species s("s");
+	try {
+		s.complete();
+		FAIL();
+	} catch (std::invalid_argument&){}
 }
 
 TEST(Species_tests, printing){
