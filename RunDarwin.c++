@@ -168,7 +168,6 @@ int main (){
         assert(false);
     }
 
-
     // ------------
     // darwin 72x72
     // with best
@@ -192,6 +191,220 @@ int main (){
             if (s % 100 == 0){
                 w.print(cout);
             }
+            w.step();
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    // ----------------
+    // Additional tests
+    // ----------------
+
+    try {
+        cout << "*** Darwin 30x50 without Best ***" << endl;
+        srand(0);
+        World w(30, 50);
+        for (int i = 1; i <= 100; i++) add_somewhere(w, &food,  30, 50);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &hopper, 30, 50);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &rover,  30, 50);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &trap,   30, 50);
+
+        int s = 0;
+        for (; s <= 20; s++){
+            w.print(cout);
+            w.step();
+        }
+        for (; s <= 2000; s++){
+            w.step();
+        }
+        w.print(cout);
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        cout << "*** Darwin 2x100 without Best ***" << endl;
+        srand(0);
+        World w(2, 100);
+        for (int i = 1; i <= 100; i++) add_somewhere(w, &food,  2, 100);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &hopper, 2, 100);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &rover,  2, 100);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &trap,   2, 100);
+
+        int s = 0;
+        for (; s <= 20; s++){
+            w.print(cout);
+            w.step();
+        }
+        for (; s < 2000; s++){
+            w.step();
+        }
+        w.print(cout);
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        cout << "*** Darwin 2x2 without Best ***" << endl;
+        srand(0);
+        World w(2, 2);
+        add_somewhere(w, &rover,  2, 2);
+        add_somewhere(w, &hopper, 2, 2);
+
+        int s = 0;
+        for (; s <= 7; s++){
+            w.print(cout);
+            w.step();
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        cout << "*** Darwin 10x10 without Best ***" << endl;
+        srand(0);
+        World w(10, 10);
+        add_somewhere(w, &rover,  10, 10);
+
+        int s = 0;
+        for (; s <= 1000; s++){
+            w.print(cout);
+            w.step();
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        cout << "*** Darwin 10x45 without Best ***" << endl;
+        srand(0);
+        World w(10, 45);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &hopper, 10, 45);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &rover,  10, 45);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &trap,   10, 45);
+
+        int s = 0;
+        for (; s <= 20; s++){
+            w.print(cout);
+            w.step();
+        }
+        for (; s < 2000; s++){
+            w.step();
+        }
+        w.print(cout);
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        cout << "*** Darwin 25x25 without Best ***" << endl;
+        srand(0);
+        World w(25, 25);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &trap,   25, 25);
+
+        int s = 0;
+        w.print(cout);
+        for (; s <= 100; s++){
+            w.step();
+        }
+        w.print(cout);
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        cout << "*** Darwin 70x5 without Best ***" << endl;
+        srand(0);
+        World w(70, 5);
+        for (int i = 1; i <= 50; i++) add_somewhere(w, &food, 70, 5);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &hopper, 70, 5);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &rover, 70, 5);
+
+        int s = 0;
+        for (; s <= 20; s++){
+            w.print(cout);
+            w.step();
+        }
+        for (; s < 2000; s++){
+            w.step();
+        }
+        w.print(cout);
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        cout << "*** Darwin 7x5 without Best ***" << endl;
+        srand(0);
+        World w(7, 5);
+        for (int i = 1; i <= 5; i++) add_somewhere(w, &food, 7, 5);
+        for (int i = 1; i <= 10; i++) add_somewhere(w, &hopper, 7, 5);
+        for (int i = 1; i <= 1; i++) add_somewhere(w, &rover, 7, 5);
+
+        int s = 0;
+        for (; s <= 20; s++){
+            w.print(cout);
+            w.step();
+        }
+        for (; s < 2000; s++){
+            w.step();
+        }
+        w.print(cout);
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        cout << "*** Darwin 10x10 without Best ***" << endl;
+        srand(0);
+        World w(10, 10);
+        for (int i = 1; i <= 25; i++) add_somewhere(w, &hopper, 10, 10);
+        for (int i = 1; i <= 1; i++) add_somewhere(w, &rover, 10, 10);
+
+        int s = 0;
+        for (; s <= 20; s++){
+            w.print(cout);
+            w.step();
+        }
+        for (; s < 2000; s++){
+            w.step();
+        }
+        w.print(cout);
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        cout << "*** Darwin 11x11 without Best ***" << endl;
+        srand(5);
+        World w(11, 11);
+        for (int i = 1; i <= 1; i++) add_somewhere(w, &trap, 11, 11);
+        for (int i = 1; i <= 25; i++) add_somewhere(w, &rover, 11, 11);
+
+        int s = 0;
+        for (; s <= 13; s++){
+            w.print(cout);
             w.step();
         }
     } catch (const invalid_argument&) {
