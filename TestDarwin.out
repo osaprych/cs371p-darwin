@@ -1,0 +1,162 @@
+Running main() from gtest_main.cc
+[==========] Running 72 tests from 4 test cases.
+[----------] Global test environment set-up.
+[----------] 25 tests from Creature_tests
+[ RUN      ] Creature_tests.infect_basic
+[       OK ] Creature_tests.infect_basic (13 ms)
+[ RUN      ] Creature_tests.infect_pc
+[       OK ] Creature_tests.infect_pc (4 ms)
+[ RUN      ] Creature_tests.infect_direction
+[       OK ] Creature_tests.infect_direction (3 ms)
+[ RUN      ] Creature_tests.infect_post
+[       OK ] Creature_tests.infect_post (3 ms)
+[ RUN      ] Creature_tests.turn_move
+[       OK ] Creature_tests.turn_move (57 ms)
+[ RUN      ] Creature_tests.turn_facing
+[       OK ] Creature_tests.turn_facing (4 ms)
+[ RUN      ] Creature_tests.turn_condition
+[       OK ] Creature_tests.turn_condition (4 ms)
+[ RUN      ] Creature_tests.turn_random
+[       OK ] Creature_tests.turn_random (7 ms)
+[ RUN      ] Creature_tests.turn_count
+[       OK ] Creature_tests.turn_count (3 ms)
+[ RUN      ] Creature_tests.turn_complex
+[       OK ] Creature_tests.turn_complex (7 ms)
+[ RUN      ] Creature_tests.turn_complex2
+[       OK ] Creature_tests.turn_complex2 (4 ms)
+[ RUN      ] Creature_tests.printing
+[       OK ] Creature_tests.printing (6 ms)
+[ RUN      ] Creature_tests.same_species
+[       OK ] Creature_tests.same_species (2 ms)
+[ RUN      ] Creature_tests.different_species
+[       OK ] Creature_tests.different_species (4 ms)
+[ RUN      ] Creature_tests.taken_turns
+[       OK ] Creature_tests.taken_turns (2 ms)
+[ RUN      ] Creature_tests.taken_one_turn
+[       OK ] Creature_tests.taken_one_turn (3 ms)
+[ RUN      ] Creature_tests.taken_two_turns
+[       OK ] Creature_tests.taken_two_turns (2 ms)
+[ RUN      ] Creature_tests.facing_left_n
+[       OK ] Creature_tests.facing_left_n (2 ms)
+[ RUN      ] Creature_tests.facing_left_e
+[       OK ] Creature_tests.facing_left_e (2 ms)
+[ RUN      ] Creature_tests.facing_left_s
+[       OK ] Creature_tests.facing_left_s (2 ms)
+[ RUN      ] Creature_tests.facing_left_w
+[       OK ] Creature_tests.facing_left_w (2 ms)
+[ RUN      ] Creature_tests.facing_right_n
+[       OK ] Creature_tests.facing_right_n (2 ms)
+[ RUN      ] Creature_tests.facing_right_e
+[       OK ] Creature_tests.facing_right_e (2 ms)
+[ RUN      ] Creature_tests.facing_right_s
+[       OK ] Creature_tests.facing_right_s (2 ms)
+[ RUN      ] Creature_tests.facing_right_w
+[       OK ] Creature_tests.facing_right_w (2 ms)
+[----------] 25 tests from Creature_tests (159 ms total)
+
+[----------] 14 tests from Location_tests
+[ RUN      ] Location_tests.order_before
+[       OK ] Location_tests.order_before (2 ms)
+[ RUN      ] Location_tests.order_self
+[       OK ] Location_tests.order_self (2 ms)
+[ RUN      ] Location_tests.order_before_same_row
+[       OK ] Location_tests.order_before_same_row (2 ms)
+[ RUN      ] Location_tests.order_before_same_column
+[       OK ] Location_tests.order_before_same_column (2 ms)
+[ RUN      ] Location_tests.order_row_major
+[       OK ] Location_tests.order_row_major (2 ms)
+[ RUN      ] Location_tests.bounds_nonnegative
+[       OK ] Location_tests.bounds_nonnegative (2 ms)
+[ RUN      ] Location_tests.bounds_over
+[       OK ] Location_tests.bounds_over (2 ms)
+[ RUN      ] Location_tests.bounds_pass
+[       OK ] Location_tests.bounds_pass (2 ms)
+[ RUN      ] Location_tests.bounds_edge
+[       OK ] Location_tests.bounds_edge (2 ms)
+[ RUN      ] Location_tests.bounds_corner
+[       OK ] Location_tests.bounds_corner (2 ms)
+[ RUN      ] Location_tests.navigate_north
+[       OK ] Location_tests.navigate_north (2 ms)
+[ RUN      ] Location_tests.navigate_east
+[       OK ] Location_tests.navigate_east (2 ms)
+[ RUN      ] Location_tests.navigate_west
+[       OK ] Location_tests.navigate_west (3 ms)
+[ RUN      ] Location_tests.navigate_south
+[       OK ] Location_tests.navigate_south (2 ms)
+[----------] 14 tests from Location_tests (29 ms total)
+
+[----------] 26 tests from World_tests
+[ RUN      ] World_tests.add_creature
+[       OK ] World_tests.add_creature (3 ms)
+[ RUN      ] World_tests.add_null_species
+[       OK ] World_tests.add_null_species (36 ms)
+[ RUN      ] World_tests.add_out_of_bounds
+[       OK ] World_tests.add_out_of_bounds (4 ms)
+[ RUN      ] World_tests.add_same_place
+[       OK ] World_tests.add_same_place (3 ms)
+[ RUN      ] World_tests.step
+[       OK ] World_tests.step (4 ms)
+[ RUN      ] World_tests.step_two
+[       OK ] World_tests.step_two (10 ms)
+[ RUN      ] World_tests.printing
+[       OK ] World_tests.printing (10 ms)
+[ RUN      ] World_tests.printing_mod
+[       OK ] World_tests.printing_mod (3 ms)
+[ RUN      ] World_tests.printing_step
+[       OK ] World_tests.printing_step (4 ms)
+[ RUN      ] World_tests.move
+[       OK ] World_tests.move (4 ms)
+[ RUN      ] World_tests.move_wall
+[       OK ] World_tests.move_wall (4 ms)
+[ RUN      ] World_tests.move_other
+[       OK ] World_tests.move_other (5 ms)
+[ RUN      ] World_tests.free_space_found
+[       OK ] World_tests.free_space_found (2 ms)
+[ RUN      ] World_tests.free_space_bounds
+[       OK ] World_tests.free_space_bounds (2 ms)
+[ RUN      ] World_tests.free_space_creature
+[       OK ] World_tests.free_space_creature (4 ms)
+[ RUN      ] World_tests.infect
+[       OK ] World_tests.infect (7 ms)
+[ RUN      ] World_tests.infect_nothing
+[       OK ] World_tests.infect_nothing (3 ms)
+[ RUN      ] World_tests.infect_friend
+[       OK ] World_tests.infect_friend (4 ms)
+[ RUN      ] World_tests.wall_interior
+[       OK ] World_tests.wall_interior (2 ms)
+[ RUN      ] World_tests.wall_facing
+[       OK ] World_tests.wall_facing (2 ms)
+[ RUN      ] World_tests.wall_facing_away
+[       OK ] World_tests.wall_facing_away (2 ms)
+[ RUN      ] World_tests.wall_corner
+[       OK ] World_tests.wall_corner (2 ms)
+[ RUN      ] World_tests.wall_all
+[       OK ] World_tests.wall_all (4 ms)
+[ RUN      ] World_tests.enemy_found
+[       OK ] World_tests.enemy_found (5 ms)
+[ RUN      ] World_tests.enemy_friend
+[       OK ] World_tests.enemy_friend (4 ms)
+[ RUN      ] World_tests.enemy_paranoia
+[       OK ] World_tests.enemy_paranoia (3 ms)
+[----------] 26 tests from World_tests (138 ms total)
+
+[----------] 7 tests from Species_tests
+[ RUN      ] Species_tests.add_instruction1
+[       OK ] Species_tests.add_instruction1 (3 ms)
+[ RUN      ] Species_tests.add_instruction2
+[       OK ] Species_tests.add_instruction2 (2 ms)
+[ RUN      ] Species_tests.completion
+[       OK ] Species_tests.completion (2 ms)
+[ RUN      ] Species_tests.completion_check
+[       OK ] Species_tests.completion_check (3 ms)
+[ RUN      ] Species_tests.completion_fails
+[       OK ] Species_tests.completion_fails (2 ms)
+[ RUN      ] Species_tests.printing
+[       OK ] Species_tests.printing (2 ms)
+[ RUN      ] Species_tests.printing_short
+[       OK ] Species_tests.printing_short (3 ms)
+[----------] 7 tests from Species_tests (18 ms total)
+
+[----------] Global test environment tear-down
+[==========] 72 tests from 4 test cases ran. (371 ms total)
+[  PASSED  ] 72 tests.
