@@ -267,6 +267,14 @@ TEST(Creature_tests, facing_right_w){
     ASSERT_EQ(north, a.facing);
 }
 
+TEST(Creature_tests, construction){
+    Species s("s");
+    Creature c(&s, north);
+    ASSERT_EQ(&s, c.behavior);
+    ASSERT_EQ(north, c.facing);
+    ASSERT_EQ(0, c.turns);
+}
+
 TEST(Location_tests, order_before){
     Location a(0, 0);
     Location b(4, 5);
@@ -641,6 +649,17 @@ TEST(World_tests, enemy_paranoia){
     ASSERT_FALSE(w.if_enemy(l, south));
 }
 
+TEST(World_tests, construction){
+    World w(4, 3);
+    ASSERT_EQ(4, w.height);
+    ASSERT_EQ(3, w.width);
+}
+
+TEST(World_tests, construction_turns){
+    World w(4, 3);
+    ASSERT_EQ(0, w.turn);
+}
+
 TEST(Species_tests, add_instruction1){
     Species s("s");
     s.add_instruction({hop});
@@ -694,4 +713,19 @@ TEST(Species_tests, printing_short){
     s.print_short_name(w);
 
     ASSERT_STREQ("s", w.str().c_str());
+}
+
+TEST(Species_tests, construction_name){
+    Species s("s");
+    ASSERT_EQ("s", s.name);
+}
+
+TEST(Species_tests, construction_steps){
+    Species s("s");
+    ASSERT_EQ(0, s.instructions.size());
+}
+
+TEST(Species_tests, construction_complete){
+    Species s("s");
+    ASSERT_FALSE(s.completed);
 }
