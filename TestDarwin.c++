@@ -267,11 +267,21 @@ TEST(Creature_tests, facing_right_w){
     ASSERT_EQ(north, a.facing);
 }
 
-TEST(Creature_tests, construction){
+TEST(Creature_tests, construction_species){
     Species s("s");
     Creature c(&s, north);
     ASSERT_EQ(&s, c.behavior);
+}
+
+TEST(Creature_tests, construction_direction){
+    Species s("s");
+    Creature c(&s, north);
     ASSERT_EQ(north, c.facing);
+}
+
+TEST(Creature_tests, construction_turns){
+    Species s("s");
+    Creature c(&s, north);
     ASSERT_EQ(0, c.turns);
 }
 
@@ -365,6 +375,16 @@ TEST(Location_tests, navigate_south){
 
     ASSERT_EQ(5, b.x);
     ASSERT_EQ(4, b.y);
+}
+
+TEST(Location_tests, construction_horizontal){
+    Location a(0, 1);
+    ASSERT_EQ(1, a.x);
+}
+
+TEST(Location_tests, construction_vertical){
+    Location a(0, 1);
+    ASSERT_EQ(0, a.y);
 }
 
 TEST(World_tests, add_creature){
@@ -649,7 +669,7 @@ TEST(World_tests, enemy_paranoia){
     ASSERT_FALSE(w.if_enemy(l, south));
 }
 
-TEST(World_tests, construction){
+TEST(World_tests, construction_location){
     World w(4, 3);
     ASSERT_EQ(4, w.height);
     ASSERT_EQ(3, w.width);
@@ -658,6 +678,16 @@ TEST(World_tests, construction){
 TEST(World_tests, construction_turns){
     World w(4, 3);
     ASSERT_EQ(0, w.turn);
+}
+
+TEST(World_tests, construction_creatures){
+    World w(4, 3);
+    ASSERT_EQ(0, w.zoo.size());
+}
+
+TEST(World_tests, construction_locations){
+    World w(4, 3);
+    ASSERT_TRUE(w.grid.empty());
 }
 
 TEST(Species_tests, add_instruction1){
