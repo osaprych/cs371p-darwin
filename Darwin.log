@@ -1,0 +1,227 @@
+commit 86ea49e4dd0202845a5df65fd8e52e44e01a298e
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Wed Nov 6 20:16:41 2013 -0600
+
+    documented methods; for #12
+
+commit acb51d220878e1c5d89a1971d948f26b981669b0
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Wed Nov 6 20:12:26 2013 -0600
+
+    updated the acceptance test output with the results for other students' tests; for #7 and for #8
+
+commit 2aace7722120a35cf2e0e10b4e74e1e0b22cf1ae
+Author: Olga <osaprych@gmail.com>
+Date:   Wed Nov 6 19:35:37 2013 -0600
+
+    added acceptance tests from other students; resolves #8
+
+commit 7576d10d882090936de3220dc45ce0ae6ed876ee
+Author: Olga <osaprych@gmail.com>
+Date:   Wed Nov 6 16:25:13 2013 -0600
+
+    added unit test output for #6
+
+commit 7681222cfac6988844011ec41c8cab44222bc5f0
+Author: Olga <osaprych@gmail.com>
+Date:   Wed Nov 6 16:17:50 2013 -0600
+
+    Custom test output for #7
+
+commit 2d42debf274e7624c082cb85d3189ecc7ded4af5
+Author: Olga <osaprych@gmail.com>
+Date:   Wed Nov 6 16:11:34 2013 -0600
+
+    Created custom acceptance tests for #7
+
+commit b63f8c7258f37a5beafc4cbe1ac91330c6fe80a4
+Author: Olga <osaprych@gmail.com>
+Date:   Wed Nov 6 15:23:49 2013 -0600
+
+    implemented best creature: resolves #10
+
+commit dbcae7c37015893944587fdde91ead7c1405a73c
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Wed Nov 6 14:26:36 2013 -0600
+
+    replaced spaces with tabs
+
+commit fa3273a59e89bae1aae018f2b781c3ae65016b93
+Author: Olga <osaprych@gmail.com>
+Date:   Tue Nov 5 18:42:59 2013 -0600
+
+    Added more unit tests
+
+commit b5e3813b6c25afd4b6eb0f77fcf0d131acf4b585
+Author: Olga <osaprych@gmail.com>
+Date:   Tue Nov 5 18:04:22 2013 -0600
+
+    added unit tests
+
+commit 8fe4bee2a2a82d2da96dc6b0d3fda76cc32ec19d
+Author: Olga <osaprych@gmail.com>
+Date:   Tue Nov 5 15:42:38 2013 -0600
+
+    ignores adding a second creature at occupied location
+
+commit 8c25c1e46a8036985d1d3b8e7828916faf1d882e
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Mon Nov 4 21:18:41 2013 -0600
+
+    map iterator is not visiting all values; reverting
+
+commit e365804f3d156bdfc72a5e5d4c934c7e2fced8db
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Mon Nov 4 21:09:37 2013 -0600
+
+    implemented the 72x72-without-best case
+
+commit 4ffe256b4a210e611a51cf4ce14bbed9138b5ce5
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Mon Nov 4 20:52:50 2013 -0600
+
+    print only draws last digit of row number; fixes #17
+
+commit 3521ae2f0aba7acb0716b1f693b8d29bed32d614
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Mon Nov 4 20:32:17 2013 -0600
+
+    Species must be completed (which requires at least one instruction) before use
+
+commit 0b1f6652809c0c79f55da88672078e972b884718
+Author: Olga <osaprych@gmail.com>
+Date:   Mon Nov 4 19:40:12 2013 -0600
+
+    optimized World step to iterate over creatures in location order
+
+commit cb8d30669ba9a4c151b4859df14c5e698fa829eb
+Author: Olga <osaprych@gmail.com>
+Date:   Mon Nov 4 19:33:23 2013 -0600
+
+    added more assertions when moving creatures
+
+commit fa54fee2835e272aa79ab329c31c69b8cbdd6174
+Author: Olga <osaprych@gmail.com>
+Date:   Mon Nov 4 19:29:07 2013 -0600
+
+    check that new creatures have valid species and are within bound at free locations; resolves #15
+
+commit bb63cd785a5e2e2975aa938b1f4272878d0e4411
+Author: Olga <osaprych@gmail.com>
+Date:   Mon Nov 4 19:16:06 2013 -0600
+
+    if_enemy correctly identifies different species; for #16
+
+commit 09f30d2666a553293e2a1a5e0f35b7bfa27bb42b
+Author: Olga <osaprych@gmail.com>
+Date:   Mon Nov 4 19:10:52 2013 -0600
+
+    world step function constructs locations properly
+
+commit e858e6681c3a653f6efec3fa59bf40381609a442
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Mon Nov 4 16:53:05 2013 -0600
+
+    implemented the first two tests
+
+commit 5862304d4b696b81ee17f8b30a4b9bd818ceef56
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Mon Nov 4 16:52:00 2013 -0600
+
+    within_bounds treates its parameters as sizes, not the highest indexes; fixes #1
+
+commit d8a08e3e01b8c07cdea2550c3c321d124f211092
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Sun Nov 3 22:20:02 2013 -0600
+
+    World constructed by height then width
+
+commit 88286819d049e8b182d3635c96e1c42d027c2fd0
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Sun Nov 3 22:16:00 2013 -0600
+
+    Locations are constructed by row first, then column
+
+commit 82f0efddacd44b49e0edf06f4828ccd97b087f08
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Sun Nov 3 22:03:04 2013 -0600
+
+    World correctly inserts new map elements with insert
+
+commit d00e62d2fe417c8749abe349aff1e0fe08c8d9a4
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Sun Nov 3 21:46:18 2013 -0600
+
+    a species cannot be completed more than once
+
+commit 9db7c2561b0059058f63c154a64c117a7d268538
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Sun Nov 3 21:33:55 2013 -0600
+
+    implemented step function for world
+
+commit 9efb10e461b83b16667ebb0dd0ecd3304aa137c9
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Sun Nov 3 21:33:35 2013 -0600
+
+    grid width and height are const
+
+commit 9e877d3fac68ac59a1df6cc76a10222a6d97ec2e
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Sun Nov 3 21:23:55 2013 -0600
+
+    a Creature can answer if it has taken n turns
+
+commit 96eef0ed493ea5c5b2f7d58e4be8332389466b08
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Sun Nov 3 21:18:42 2013 -0600
+
+    removed unnecessary methods for modifying pc of Creatures
+
+commit 6d38eeee321252dc5ca5c34e664b602d9fa89800
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Sun Nov 3 21:16:27 2013 -0600
+
+    Instructions are now passive structs of data, not an abstract base class
+
+commit e2234f43555d16a07a715a242013cb2934964f98
+Author: rogers-j <joe.rogers@utexas.edu>
+Date:   Sun Nov 3 20:23:47 2013 -0600
+
+    implemented World methods to print, check surrounding area, move, and infect
+
+commit 4cd8092975da149b3b044b746d25b5af4a6c1fb9
+Author: Olga <osaprych@gmail.com>
+Date:   Sat Nov 2 23:31:24 2013 -0500
+
+    implemented part of World
+
+commit ea8b0d42eec72da19a4022e70d04aff69b325084
+Author: Olga <osaprych@gmail.com>
+Date:   Sat Nov 2 22:34:21 2013 -0500
+
+    fixed constructor of Location
+
+commit 717eb704db76af79a95a4e32fc337161beee59a9
+Author: Olga <osaprych@gmail.com>
+Date:   Sat Nov 2 22:33:13 2013 -0500
+
+    locations are ordered by row first
+
+commit ee8e88fa5e5644abeee3ef94871de5fee7b0cb13
+Author: Olga <osaprych@gmail.com>
+Date:   Sat Nov 2 22:30:52 2013 -0500
+
+    implemented Creature and Species
+
+commit 69ad1eadb51c0c60937b7ac397b8a499a97ffc5c
+Author: Olga <osaprych@gmail.com>
+Date:   Sat Nov 2 21:52:16 2013 -0500
+
+    declared skeleton
+
+commit b51bc92c89af03d8c4b0597ebef0a0ec17118e18
+Author: Olga <osaprych@gmail.com>
+Date:   Sat Nov 2 18:21:32 2013 -0500
+
+    initial commit
