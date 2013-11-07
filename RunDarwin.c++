@@ -413,5 +413,214 @@ int main (){
         assert(false);
     }
 
+    // Peer Tests
+
+    try {
+        // nlaz line #212
+        cout << "*** Darwin 1x1 ***" << endl;
+        World w(1, 1);
+        w.add_creature(&hopper, east, Location(0, 0));
+        w.print(cout);
+        for (int i = 0; i < 5; i++){
+            w.step();
+            w.print(cout);
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        // nlaz line #237
+        cout << "*** Darwin 2x2 ***" << endl;
+        srand(0);
+        World w(2, 2);
+        w.add_creature(&trap, south, Location(0, 0));
+        w.add_creature(&hopper, east, Location(0, 1));
+        w.add_creature(&rover, north, Location(1, 0));
+        w.add_creature(&trap, west, Location(1, 1));
+        w.print(cout);
+        for (int i = 0; i < 5; i++){
+            w.step();
+            w.print(cout);
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        // nlaz line #270
+        cout << "*** Darwin 4x4 ***" << endl;
+        srand(0);
+        World w(4, 4);
+        w.add_creature(&trap, west, Location(0, 0));
+        w.add_creature(&food, north, Location(1, 1));
+        w.add_creature(&rover, east, Location(2, 2));
+        w.add_creature(&trap, south, Location(3, 3));
+        w.print(cout);
+        for (int i = 0; i < 5; i++){
+            w.step();
+            w.print(cout);
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        // nlaz line #340
+        cout << "*** Darwin 5x5 ***" << endl;
+        srand(0);
+        World w(5, 5);
+        w.add_creature(&trap, west, Location(0, 0));
+        w.add_creature(&hopper, north, Location(0, 1));
+        w.add_creature(&hopper, east, Location(0, 2));
+        w.add_creature(&hopper, south, Location(0, 3));
+        w.print(cout);
+        for (int i = 0; i < 5; i++){
+            w.step();
+            w.print(cout);
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        // nlaz line #378
+        cout << "*** Darwin 5x5 ***" << endl;
+        srand(0);
+        World w(5, 5);
+        w.add_creature(&trap, west, Location(4, 0));
+        w.add_creature(&hopper, north, Location(4, 1));
+        w.add_creature(&hopper, east, Location(4, 2));
+        w.add_creature(&hopper, south, Location(4, 3));
+        w.add_creature(&food, north, Location(4, 4));
+        w.print(cout);
+        for (int i = 0; i < 5; i++){
+            w.step();
+            w.print(cout);
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        // rgriege line #148
+        cout << "*** Darwin 8x8 ***" << endl;
+        World w(8, 8);
+        w.add_creature(&hopper, south, Location(0, 0));
+        w.add_creature(&hopper, north, Location(7, 7));
+        w.add_creature(&trap, east, Location(0, 7));
+        w.add_creature(&trap, west, Location(7, 0));
+        for (int i = 0; i < 10; i++) {
+            w.print(cout);
+            w.step();
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        // rgriege line #175
+        cout << "*** Darwin 3x3 ***" << endl;
+        World w(3, 3);
+        w.add_creature(&trap, south, Location(1, 1));
+        w.add_creature(&rover, east, Location(0, 0));
+        for (int i = 0; i < 16; i++) {
+            w.print(cout);
+            w.step();
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        // jkovar line #305
+        cout << "*** Darwin 1x15 ***" << endl;
+        World w(1, 15);
+        w.add_creature(&hopper, east, Location(0, 0));
+        for (int i = 0; i <= 15; i++) {
+            w.print(cout);
+            w.step();
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        // jkovar line #330
+        cout << "*** Darwin 3x3 ***" << endl;
+        World w(3, 3);
+        w.add_creature(&trap, north, Location(1, 1));
+        w.add_creature(&food, north, Location(0, 0));
+        w.add_creature(&food, north, Location(0, 1));
+        w.add_creature(&food, north, Location(0, 2));
+        w.add_creature(&food, north, Location(1, 0));
+        w.add_creature(&food, north, Location(1, 2));
+        w.add_creature(&food, north, Location(2, 0));
+        w.add_creature(&food, north, Location(2, 1));
+        w.add_creature(&food, north, Location(2, 2));
+        for (int i = 0; i <= 6; i++) {
+            w.print(cout);
+            w.step();
+        }
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        // ethan line #133
+        cout << "*** Darwin 8x8 Rover Around ***" << endl;
+        srand(0);
+        World w(8, 8);
+        w.add_creature(&rover, south, Location(0, 0));
+        w.add_creature(&food, east, Location(7, 0));
+        w.add_creature(&food, north, Location(7, 7));
+        w.add_creature(&food, east, Location(0, 7));
+        for (int i = 0; i < 25; i++) {
+            w.print(cout);
+            w.step();
+        }
+        w.print(cout);
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
+    try {
+        // austind line #229
+        cout << "*** 1x60 Test for Meeting a Friend ***" << endl;
+        srand(0);
+        World w(1, 60);
+        w.add_creature(&hopper, east, Location(0, 0));
+        w.add_creature(&hopper, west, Location(0, 59));
+        w.print(cout);
+        for (int i = 0; i < 29; i++) {
+            w.step();
+        }
+        w.print(cout);
+    } catch (const invalid_argument&) {
+        assert(false);
+    } catch (const out_of_range&) {
+        assert(false);
+    }
+
     return 0;
 }
